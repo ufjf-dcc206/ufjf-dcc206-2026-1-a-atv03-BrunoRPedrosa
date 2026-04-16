@@ -3,6 +3,7 @@ import { getLista } from "./lista";
 export function setupRootApp() {
   const divRoot = document.createElement("div");
   divRoot.append(criaTitulo());
+  divRoot.append(criaForm());
   divRoot.append(criaLista());
   return divRoot;
 }
@@ -27,13 +28,37 @@ function criaTitulo() {
   return h1;
 }
 
-export function setupEvents(root){
+function criaForm() {
+  const divForm = document.createElement("div");
+  const form = document.createElement("form");
+  form.name = "entrada";
+  divForm.append(form);
+  const input = document.createElement("input");
+  input.name = "texto";
+  form.append(input);
+  const button = document.createElement("button");
+  button.textContent = "Adicionar";
+  form.append(button);
+  return divForm;
+}
+
+function setupFormSubmit(form) {
+  form.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+    console.log("Formulário enviado!!");
+    console.log(document.entrada.texto.value);
+    document.entrada.texto.value = "";
+    document.entrada.texto.value.focus();
+  });
+}
+
+export function setupEvents(root) {
   const btnAtualizar = root.querySelector("#atualizar");
   const ol = root.querySelector("ol");
-  btnAtualizar.addEventListener("click", ()=>{
+  btnAtualizar.addEventListener("click", () => {
     const lista = getLista();
     ol.innerHTML = "";
-    for(let i=0; i<lista.length; i++){
+    for (let i = 0; i < lista.length; i++) {
       const li = document.createElement("li");
       li.textContent = lista[i];
       ol.append(li);
