@@ -1,17 +1,17 @@
 import { expect, test } from "vitest";
 import { setupEvents, setupRootApp } from "./setupRootApp";
-import { iniciaLista } from "./lista";
+import { iniciaLista, limpaLista } from "./lista";
 
 test("Que tenha um título na página", () => {
   const app = document.createElement("div");
-  app.append = setupRootApp();
+  app.append(setupRootApp());
   const h1 = app.querySelector("h1");
-  expect(h1.textContent).toBe("App de Lista");
+  expect(h1.textContent).toBe("App de lista");
 });
 
 test("Quando clica no botão atualizar deve ter 3 itens", () => {
   const app = document.createElement("div");
-  app.append = setupRootApp();
+  app.append(setupRootApp());
   setupEvents(app);
   iniciaLista();
   const botao = app.querySelector("#atualizar");

@@ -1,4 +1,4 @@
-import { it, expect } from "vitest";
+import { expect, it } from "vitest";
 import { getLista, iniciaLista, limpaLista } from "./lista";
 
 it("deve ter zero elementos após limpar a lista", () => {
